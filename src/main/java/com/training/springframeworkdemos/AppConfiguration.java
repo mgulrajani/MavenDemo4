@@ -18,12 +18,28 @@ public class AppConfiguration {
 		return new App();
 	}
 	
+	
+	@Bean
+	public Engine getEngine() {
+		return new Engine();
+	}
+	
+	@Bean
+	public Car getCar() {
+		
+		return new Car();
+	}
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context =
 				new AnnotationConfigApplicationContext(AppConfiguration.class);
 		
 		App bean= context.getBean(App.class);
 		
+		Car car =  context.getBean(Car.class);
+		car.getEngine().setCapacity(10);
+		car.getEngine().setCyclinders(10);
+		
+		System.out.println(car.getEngine());
 		bean.performGreeting("java");
 		
 	}
